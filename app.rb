@@ -20,7 +20,7 @@ post '/gateway' do
     when 'owner'
       resp = HTTParty.get(repo_url)
       resp = JSON.parse resp.body
-      respond_message "#{resp['owner['login']']} owns #{repo}"
+      respond_message "#{resp['owner']} owns #{repo}"
   end
 end
 

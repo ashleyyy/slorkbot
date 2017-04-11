@@ -16,7 +16,11 @@ post '/gateway' do
       resp = JSON.parse resp.body
       respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
     when 'ashley'
-      respond_message repo_url
+      respond_message "Ashley, you are soooooo good lookin'"
+    when 'owner'
+      resp = HTTParty.get(repo_url)
+      resp = JSON.parse resp.body
+      respond_message "#{resp['owner.login']} owns #{repo}"
   end
 end
 

@@ -4,7 +4,7 @@ require 'json'
 
 post '/gateway' do
   return if params[:token] != ENV['SLACK_TOKEN']
-  
+
   message = params[:text].gsub(params[:trigger_word], '').strip
 
   action, repo = message.split('_').map {|c| c.strip.downcase }
@@ -15,6 +15,8 @@ post '/gateway' do
       resp = HTTParty.get(repo_url)
       resp = JSON.parse resp.body
       respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
+    when 'ashley'
+      respond_message "Ashley, you are soooooo good lookin'"
   end
 end
 

@@ -2,6 +2,8 @@ require 'sinatra'
 require 'httparty'
 require 'json'
 
+compliments = ["you are soooooo good lookin'", "your teeth are lookin' shiny today", "I admire your courage", "nobody does it better than you", "you are kind to animals", "you are so beautiful that you know what I mean", "you’re to be a key? Because I can bear your toot?", "You look like a thing and I love you", "you are so beautiful that you make me feel better to see you"]
+
 post '/gateway' do
   return if params[:token] != ENV['SLACK_TOKEN']
 
@@ -10,7 +12,7 @@ post '/gateway' do
   action = message.split.first
   term = message.split(' ')[1..-1].join(' ')
 
-  compliments = ["you are soooooo good lookin'", "your teeth are lookin' shiny today", "I admire your courage", "nobody does it better than you", "you are kind to animals", "you are so beautiful that you know what I mean", "you’re to be a key? Because I can bear your toot?", "You look like a thing and I love you", "you are so beautiful that you make me feel better to see you"]
+  
 
   case action
   # when 'ashley'

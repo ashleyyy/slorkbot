@@ -11,11 +11,13 @@ post '/gateway' do
 
   message = params[:text].sub(params[:trigger_word], '')
 
-  if message.split.first == ','
-    action = message.split(' ')[1..-1].join(' ').split.first
-  else 
+  action = message.split(' ')[1..-1].join(' ').split if message.split.first == ','
+
+  # if message.split.first == ','
+  #   action = message.split(' ')[1..-1].join(' ').split.first
+  # else 
     action = message.split.first
-  end
+  # end
 
   term = message.split(' ')[1..-1].join(' ').gsub("\"", "")
 

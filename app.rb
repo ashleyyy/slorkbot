@@ -20,6 +20,8 @@ post '/gateway' do
   when 'define'
     term = term.gsub(" ", "+").gsub("\"", "")
     respond_message "http://lmgtfy.com/?q=#{term}"
+  when 'add'
+    respond_message "look, I'm trying here"
   else 
     if term == "needs love"
       respond_message action + ", " + compliments[rand(compliments.length)]

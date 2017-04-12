@@ -22,6 +22,8 @@ post '/gateway' do
       #   respond_message "There are #{resp['open_issues_count']} open issues on #{term}"
       when 'ashley'
         respond_message "Ashley, you are soooooo good lookin'"
+      when 'I'
+        respond_message params[:user_name] + " you are soooooo good lookin'"
       # when 'owner'
       #   resp = HTTParty.get(repo_url)
       #   resp = JSON.parse resp.body

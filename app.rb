@@ -7,7 +7,10 @@ post '/gateway' do
 
   message = params[:text].gsub(params[:trigger_word], '').strip
 
-  action, repo = message.split(': ').map {|c| c.strip.downcase }
+  action = message[0]
+  repo = message.split(' ')[1..-1].join(' ')
+
+  # action, repo = message.split(': ').map {|c| c.strip.downcase }
   # repo_url = "https://api.github.com/repos/#{repo}"
 
   case action
@@ -45,5 +48,5 @@ def postback message, channel
 
     # HTTParty.post slack_webhook, body: {"text" => message.to_s, "username" => "John Doe", "channel" => params[:channel_id]}.to_json, headers: {'content-type' => 'application/json'}
 
-    # curl --data "http://lmgtfy.com/?q=shinny" $'https://horacephair.slack.com/services/hooks/slackbot?token=lzGQgtMVo2e6cb9ewpWmvqET&channel=%23test'
+    # curl --data ":tea:" $'https://horacephair.slack.com/services/hooks/slackbot?token=lzGQgtMVo2e6cb9ewpWmvqET&channel=%23test'
 end

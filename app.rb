@@ -13,19 +13,17 @@ post '/gateway' do
 
   action = message.split.first
   term = message.split(' ')[1..-1].join(' ').gsub("\"", "")
-
-  compliments = ["you are soooooo good lookin'", "your teeth are lookin' shiny today", "I admire your courage", "nobody does it better than you", "you are kind to animals", "you are so beautiful that you know what I mean", "you’re to be a key? Because I can bear your toot?", "You look like a thing and I love you", "you are so beautiful that you make me feel better to see you"]
-
+  
   case action
   when 'ashley'
     respond_message get_compliment
-  when 'nuke'
-    @model = Model.find_by(compliment: "\"you are so beautiful that you know what I mean\"")
-    if @model.destroy
-      respond_message 'good'
-    else 
-      respond_message 'bad'
-    end
+  # when 'nuke'
+  #   @model = Model.find_by(compliment:)
+  #   if @model.destroy
+  #     respond_message 'good'
+  #   else 
+  #     respond_message 'bad'
+  #   end
   when 'I'
     respond_message params[:user_name] + ", " + get_compliment
   when 'define'
@@ -62,18 +60,18 @@ def get_compliment
   end
 end
 
-get '/anonymize' do
-  postback params[:text], params[:channel_id]
-  status 200
-end
+# get '/anonymize' do
+#   postback params[:text], params[:channel_id]
+#   status 200
+# end
  
-def postback message, channel
-    # slack_webhook = ENV['SLACK_WEBHOOK_URL']
-    url = ENV['SLACK_WEBHOOK_URL'] + "&channel=%23test"
-    msg = params[:text]
-    HTTParty.post(url, body: msg.to_json)
+# def postback message, channel
+#     # slack_webhook = ENV['SLACK_WEBHOOK_URL']
+#     url = ENV['SLACK_WEBHOOK_URL'] + "&channel=%23test"
+#     msg = params[:text]
+#     HTTParty.post(url, body: msg.to_json)
 
-    # HTTParty.post slack_webhook, body: {"text" => message.to_s, "username" => "John Doe", "channel" => params[:channel_id]}.to_json, headers: {'content-type' => 'application/json'}
+#     # HTTParty.post slack_webhook, body: {"text" => message.to_s, "username" => "John Doe", "channel" => params[:channel_id]}.to_json, headers: {'content-type' => 'application/json'}
 
-    # curl --data ":tea:" $'https://horacephair.slack.com/services/hooks/slackbot?token=lzGQgtMVo2e6cb9ewpWmvqET&channel=%23test'
-end
+#     # curl --data ":tea:" $'https://horacephair.slack.com/services/hooks/slackbot?token=lzGQgtMVo2e6cb9ewpWmvqET&channel=%23test'
+# end

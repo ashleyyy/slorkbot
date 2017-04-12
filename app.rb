@@ -19,6 +19,13 @@ post '/gateway' do
   case action
   when 'ashley'
     respond_message get_compliment
+  when 'nuke'
+    @model = Model.find_by(text: "You look like a thing and I love you")
+    if @model.destroy
+      respond_message 'good'
+    else 
+      respond_message 'bad'
+    end
   when 'I'
     respond_message params[:user_name] + ", " + get_compliment
   when 'define'
@@ -48,8 +55,11 @@ def add_compliment message
 end
 
 def get_compliment
-  @compliment = Model.find_by(id: rand(Model.count(:compliment)))
-  @compliment.compliment
+  if @compliment = Model.find_by(id: rand(Model.count(:compliment)))
+    @compliment.compliment
+  else
+    "I love you"
+  end
 end
 
 get '/anonymize' do

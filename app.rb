@@ -4,6 +4,7 @@ require 'json'
 
 require 'sinatra/activerecord'
 require './config/environments' #database configuration
+require './models/model'
 
 post '/gateway' do
   return if params[:token] != ENV['SLACK_TOKEN']

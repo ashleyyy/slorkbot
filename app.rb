@@ -21,7 +21,7 @@ post '/gateway' do
     term = term.gsub(" ", "+").gsub("\"", "")
     respond_message "http://lmgtfy.com/?q=#{term}"
   when 'add'
-    respond_message "look, I'm trying here"
+    add_message term
   else 
     if term == "needs love"
       respond_message action + ", " + compliments[rand(compliments.length)]
@@ -32,6 +32,11 @@ end
 def respond_message message
   content_type :json
   {:text => message}.to_json
+end
+
+def add_message message
+  compliments.push(message)
+  respond_message "look, I'm trying here"
 end
 
 get '/anonymize' do

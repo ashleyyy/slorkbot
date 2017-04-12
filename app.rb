@@ -48,8 +48,8 @@ def add_compliment message
 end
 
 def get_compliment
-  @compliment = Model.first
-  respond_message @compliment
+  @compliment = Model.find_by id: 1
+  respond_message @compliment.compliment
 end
 
 get '/anonymize' do

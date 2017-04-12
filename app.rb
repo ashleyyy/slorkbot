@@ -45,7 +45,7 @@ post '/gateway' do
       respond_message params[:user_name] + ", " + get_compliment
     end
   else 
-    if term == "needs love" || "need love"
+    if term == "needs love"
       respond_message action + ", " + get_compliment
     else
       respond_message "guys, sometimes I need love too"

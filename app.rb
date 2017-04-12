@@ -17,15 +17,15 @@ post '/gateway' do
   compliments = ["you are soooooo good lookin'", "your teeth are lookin' shiny today", "I admire your courage", "nobody does it better than you", "you are kind to animals", "you are so beautiful that you know what I mean", "you’re to be a key? Because I can bear your toot?", "You look like a thing and I love you", "you are so beautiful that you make me feel better to see you"]
 
   case action
-  # when 'ashley'
-  #   respond_message "Ashley, you are soooooo good lookin'"
+  when 'ashley'
+    get_compliment
   when 'I'
     respond_message params[:user_name] + ", " + compliments[rand(compliments.length)]
   when 'define'
     term = term.gsub(" ", "+").gsub("\"", "")
     respond_message "http://lmgtfy.com/?q=#{term}"
   when 'add'
-    add_message term
+    add_compliment term
   else 
     if term == "needs love"
       respond_message action + ", " + compliments[rand(compliments.length)]
@@ -38,13 +38,18 @@ def respond_message message
   {:text => message}.to_json
 end
 
-def add_message message
+def add_compliment message
   @model = Model.new(compliment: message)
   if @model.save
-    respond_message "#{message} saved"
+    respond_message "Thanks! :blush: I'll pass it on."
   else
-    respond_message "#{message}. look, I'm trying here. you're in the method at least"
+    respond_message "I don't know why, but there's been a massive fuckup"
   end
+end
+
+def get_compliment
+  @compliment = Model.first
+  respond_message @compliment
 end
 
 get '/anonymize' do

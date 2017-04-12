@@ -2,8 +2,6 @@ require 'sinatra'
 require 'httparty'
 require 'json'
 
-@compliments = ["you are soooooo good lookin'", "your teeth are lookin' shiny today", "I admire your courage", "nobody does it better than you", "you are kind to animals", "you are so beautiful that you know what I mean", "you’re to be a key? Because I can bear your toot?", "You look like a thing and I love you", "you are so beautiful that you make me feel better to see you"]
-
 post '/gateway' do
   return if params[:token] != ENV['SLACK_TOKEN']
 
@@ -12,13 +10,20 @@ post '/gateway' do
   action = message.split.first
   term = message.split(' ')[1..-1].join(' ')
 
+  compliments = ["default compliment"]
+
+    # "you are soooooo good lookin'", "your teeth are lookin' shiny today", "I admire your courage", "nobody does it better than you", "you are kind to animals", "you are so beautiful that you know what I mean", "you’re to be a key? Because I can bear your toot?", "You look like a thing and I love you", "you are so beautiful that you make me feel better to see you"]
+
   case action
+  # when 'ashley'
+  #   respond_message "Ashley, you are soooooo good lookin'"
   when 'I'
     respond_message params[:user_name] + ", " + compliments[rand(compliments.length)]
   when 'define'
     term = term.gsub(" ", "+").gsub("\"", "")
     respond_message "http://lmgtfy.com/?q=#{term}"
   when 'add'
+    compliments.push(term)
     add_message term
   else 
     if term == "needs love"
@@ -33,8 +38,7 @@ def respond_message message
 end
 
 def add_message message
-  @compliments.push("message")
-  respond_message "look, I'm trying here. you're in the method at least"
+  respond_message "I don't know how to debug this either"
 end
 
 get '/anonymize' do

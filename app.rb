@@ -20,6 +20,9 @@ post '/gateway' do
   when 'define'
     term = term.gsub(" ", "+").gsub("\"", "")
     respond_message "http://lmgtfy.com/?q=#{term}"
+  when 'add'
+    add_message term
+    respond_message "Thanks, I'll pass that on"
   else 
     if term == "needs love"
       respond_message action + ", " + compliments[rand(compliments.length)]
@@ -30,7 +33,13 @@ end
 def respond_message message
   content_type :json
   {:text => message}.to_json
+  #TODO include ethereal response to successful message add
 end
+
+def add message
+  compliments.push(message) 
+end
+
 
 get '/anonymize' do
   postback params[:text], params[:channel_id]

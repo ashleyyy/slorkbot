@@ -22,6 +22,7 @@ post '/gateway' do
     #   resp = JSON.parse resp.body
     #   respond_message "#{resp['owner']['login']} owns #{repo}"
     when 'define'
+      repo = repo.gsub(" ", "+").gsub("\"", "")
       respond_message "http://lmgtfy.com/?q=#{repo}"
   end
 end

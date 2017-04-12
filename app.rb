@@ -7,7 +7,7 @@ post '/gateway' do
 
   message = params[:text].gsub(params[:trigger_word], '').strip
 
-  action = message[0]
+  action = message.split.first
   repo = message.split(' ')[1..-1].join(' ')
 
   # action, repo = message.split(': ').map {|c| c.strip.downcase }

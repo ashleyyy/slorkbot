@@ -13,22 +13,23 @@ post '/gateway' do
 
   if term = "needs love"
     respond_message "#{action}, you are soooooo good lookin'"
-  end
+  else
 
-  case action
-    # when 'issues'
-    #   resp = HTTParty.get(repo_url)
-    #   resp = JSON.parse resp.body
-    #   respond_message "There are #{resp['open_issues_count']} open issues on #{term}"
-    when 'ashley'
-      respond_message "Ashley, you are soooooo good lookin'"
-    # when 'owner'
-    #   resp = HTTParty.get(repo_url)
-    #   resp = JSON.parse resp.body
-    #   respond_message "#{resp['owner']['login']} owns #{term}"
-    when 'define' || ', define'
-      term = term.gsub(" ", "+").gsub("\"", "")
-      respond_message "http://lmgtfy.com/?q=#{term}"
+    case action
+      # when 'issues'
+      #   resp = HTTParty.get(repo_url)
+      #   resp = JSON.parse resp.body
+      #   respond_message "There are #{resp['open_issues_count']} open issues on #{term}"
+      when 'ashley'
+        respond_message "Ashley, you are soooooo good lookin'"
+      # when 'owner'
+      #   resp = HTTParty.get(repo_url)
+      #   resp = JSON.parse resp.body
+      #   respond_message "#{resp['owner']['login']} owns #{term}"
+      when 'define' || ', define'
+        term = term.gsub(" ", "+").gsub("\"", "")
+        respond_message "http://lmgtfy.com/?q=#{term}"
+    end
   end
 end
 

@@ -5,3 +5,4 @@ gem 'httparty'
 gem "activerecord"
 gem "sinatra-activerecord"
 gem "pg"
+gem "rake"

@@ -37,7 +37,7 @@ def respond_message message
 end
 
 def add_message message
-  [].push("message")
+  compliments.push("message")
   respond_message "look, I'm trying here. you're in the method at least"
 end
 

@@ -2,6 +2,9 @@ require 'sinatra'
 require 'httparty'
 require 'json'
 
+require 'sinatra/activerecord'
+require './config/environments' #database configuration
+
 post '/gateway' do
   return if params[:token] != ENV['SLACK_TOKEN']
 
@@ -35,6 +38,7 @@ def respond_message message
 end
 
 def add_message message
+
   respond_message "#{message}. look, I'm trying here. you're in the method at least"
 end
 

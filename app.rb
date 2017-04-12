@@ -18,7 +18,7 @@ post '/gateway' do
 
   case action
   when 'ashley'
-    get_compliment
+    respond_message get_compliment
   when 'I'
     respond_message params[:user_name] + ", " + compliments[rand(compliments.length)]
   when 'define'
@@ -49,7 +49,7 @@ end
 
 def get_compliment
   @compliment = Model.find_by(id: rand(Model.count(:compliment)))
-  respond_message @compliment.compliment
+  @compliment.compliment
 end
 
 get '/anonymize' do

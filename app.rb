@@ -12,7 +12,7 @@ post '/gateway' do
   message = params[:text].gsub(params[:trigger_word], '')
 
   if message.split.first == ','
-    action = message.gsub("," "").split.first
+    action = message.sub("," "").split.first
   else 
     action = message.split.first
   end

@@ -35,7 +35,7 @@ def respond_message message
   #TODO include ethereal response to successful message add
 end
 
-def add_message
+def add_message message
   compliments.push(message) 
   respond_message "Thanks, I'll pass that on"
 end

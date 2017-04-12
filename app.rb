@@ -38,7 +38,7 @@ def postback message, channel
     # slack_webhook = ENV['SLACK_WEBHOOK_URL']
     url = ENV['SLACK_WEBHOOK_URL'] + "&channel=%23test"
     msg = params[:text]
-    HTTParty.post(url, body: {"text":"#{msg}"}.to_json)
+    HTTParty.post(url, body: {msg}.to_json)
 
     # HTTParty.post slack_webhook, body: {"text" => message.to_s, "username" => "John Doe", "channel" => params[:channel_id]}.to_json, headers: {'content-type' => 'application/json'}
 

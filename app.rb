@@ -11,11 +11,11 @@ post '/gateway' do
 
   message = params[:text].gsub(params[:trigger_word], '').downcase!
 
-  if message.split.first == ','
-    action = message.gsub(",", "").split.first
-  else 
+  # if message.split.first == ','
+  #   action = message.gsub(",", "").split.first
+  # else 
     action = message.split.first 
-  end
+  # end
 
   term = message.split(' ')[1..-1].join(' ').gsub("\"", "")
 
@@ -29,8 +29,8 @@ post '/gateway' do
   #   else 
   #     respond_message 'bad'
   #   end
-  # when ','
-  #   respond_message params[:user_name] + ", I fucking hate commas"
+  when ','
+    respond_message params[:user_name] + ", I don't know how commas work"
   when 'I'
     respond_message params[:user_name] + ", " + get_compliment
   when 'define'

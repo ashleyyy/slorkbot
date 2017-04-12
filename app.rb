@@ -9,7 +9,7 @@ require './models/model'
 post '/gateway' do
   return if params[:token] != ENV['SLACK_TOKEN']
 
-  message = params[:text].gsub(params[:trigger_word], '')
+  message = params[:text].sub(params[:trigger_word], '')
 
   if message.split.first == ','
     action = message.split(' ')[1..-1].join(' ').split.first

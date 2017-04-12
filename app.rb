@@ -11,7 +11,7 @@ post '/gateway' do
   term = message.split(' ')[1..-1].join(' ')
   # repo_url = "https://api.github.com/terms/#{term}"
 
-  if term = "needs love"
+  if term == "needs love"
     respond_message "#{action}, you are soooooo good lookin'"
   else
 

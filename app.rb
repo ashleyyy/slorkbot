@@ -10,8 +10,13 @@ post '/gateway' do
   return if params[:token] != ENV['SLACK_TOKEN']
 
   message = params[:text].gsub(params[:trigger_word], '')
-  
-  action = message.split.first
+
+  if message.split.first == ','
+    action = message.gsub("," "").split.first
+  else 
+    action = message.split.first
+  end
+
   term = message.split(' ')[1..-1].join(' ').gsub("\"", "")
 
   case action
@@ -40,7 +45,7 @@ post '/gateway' do
       respond_message params[:user_name] + ", " + get_compliment
     end
   else 
-    if term == "needs love"
+    if term == "needs love" || "need love"
       respond_message action + ", " + get_compliment
     else
       respond_message "guys, sometimes I need love too"

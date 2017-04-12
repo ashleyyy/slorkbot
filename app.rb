@@ -9,29 +9,31 @@ post '/gateway' do
 
   action = message.split.first
   term = message.split(' ')[1..-1].join(' ')
-  # repo_url = "https://api.github.com/terms/#{term}"
+  # repo_url = "https://api.github.com/repos/#{term}"
 
-  if term == "needs love"
-    respond_message "#{action}, you are soooooo good lookin'"
-  else
 
-    case action
-      # when 'issues'
-      #   resp = HTTParty.get(repo_url)
-      #   resp = JSON.parse resp.body
-      #   respond_message "There are #{resp['open_issues_count']} open issues on #{term}"
-      when 'ashley'
-        respond_message "Ashley, you are soooooo good lookin'"
-      when 'I'
-        respond_message params[:user_name] + " you are soooooo good lookin'"
-      # when 'owner'
-      #   resp = HTTParty.get(repo_url)
-      #   resp = JSON.parse resp.body
-      #   respond_message "#{resp['owner']['login']} owns #{term}"
-      when 'define' || ', define'
-        term = term.gsub(" ", "+").gsub("\"", "")
-        respond_message "http://lmgtfy.com/?q=#{term}"
-    end
+
+  case action
+    # when 'issues'
+    #   resp = HTTParty.get(repo_url)
+    #   resp = JSON.parse resp.body
+    #   respond_message "There are #{resp['open_issues_count']} open issues on #{term}"
+    when 'ashley'
+      respond_message "Ashley, you are soooooo good lookin'"
+    when 'I'
+      respond_message params[:user_name] + " you are soooooo good lookin'"
+    # when 'owner'
+    #   resp = HTTParty.get(repo_url)
+    #   resp = JSON.parse resp.body
+    #   respond_message "#{resp['owner']['login']} owns #{term}"
+    when 'define' || ', define'
+      term = term.gsub(" ", "+").gsub("\"", "")
+      respond_message "http://lmgtfy.com/?q=#{term}"
+    else 
+      if term == "needs love"
+        respond_message "#{action}, you are soooooo good lookin'"
+      end
+
   end
 end
 

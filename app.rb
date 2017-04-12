@@ -29,7 +29,7 @@ def respond_message message
   {:text => message}.to_json
 end
 
-get '/anonymize' do
+post '/anonymize' do
   postback params[:text], params[:channel_id]
   status 200
 end

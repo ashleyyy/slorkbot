@@ -8,25 +8,27 @@ post '/gateway' do
   message = params[:text].gsub(params[:trigger_word], '').strip
 
   action = message.split.first
-  repo = message.split(' ')[1..-1].join(' ')
+  term = message.split(' ')[1..-1].join(' ')
+  # repo_url = "https://api.github.com/terms/#{term}"
 
-  # action, repo = message.split(': ').map {|c| c.strip.downcase }
-  # repo_url = "https://api.github.com/repos/#{repo}"
+  if term = "needs love"
+    respond_message "#{action}, you are soooooo good lookin'"
+  end
 
   case action
     # when 'issues'
     #   resp = HTTParty.get(repo_url)
     #   resp = JSON.parse resp.body
-    #   respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
+    #   respond_message "There are #{resp['open_issues_count']} open issues on #{term}"
     when 'ashley'
       respond_message "Ashley, you are soooooo good lookin'"
     # when 'owner'
     #   resp = HTTParty.get(repo_url)
     #   resp = JSON.parse resp.body
-    #   respond_message "#{resp['owner']['login']} owns #{repo}"
+    #   respond_message "#{resp['owner']['login']} owns #{term}"
     when 'define' || ', define'
-      repo = repo.gsub(" ", "+").gsub("\"", "")
-      respond_message "http://lmgtfy.com/?q=#{repo}"
+      term = term.gsub(" ", "+").gsub("\"", "")
+      respond_message "http://lmgtfy.com/?q=#{term}"
   end
 end
 

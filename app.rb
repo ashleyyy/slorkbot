@@ -16,13 +16,13 @@ post '/gateway' do
   # when 'ashley'
   #   respond_message "Ashley, you are soooooo good lookin'"
   when 'I'
-    respond_message params[:user_name] + " "+ compliments[rand(compliments.length)]
+    respond_message params[:user_name] + ", " + compliments[rand(compliments.length)]
   when 'define'
     term = term.gsub(" ", "+").gsub("\"", "")
     respond_message "http://lmgtfy.com/?q=#{term}"
   else 
     if term == "needs love"
-      respond_message "#{action}, you are soooooo good lookin'"
+      respond_message action + ", " + compliments[rand(compliments.length)]
     end
   end
 end

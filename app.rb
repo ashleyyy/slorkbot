@@ -10,12 +10,7 @@ post '/gateway' do
   return if params[:token] != ENV['SLACK_TOKEN']
 
   message = params[:text].gsub(params[:trigger_word], '').downcase!
-
-  if message.split.first == ','
-    action = message.gsub("," "").split.first
-  else 
-    action = message.split.first
-  end
+  action = message.split.first
 
   term = message.split(' ')[1..-1].join(' ').gsub("\"", "")
 

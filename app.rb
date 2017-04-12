@@ -48,7 +48,7 @@ def add_compliment message
 end
 
 def get_compliment
-  @compliment = Model.find_by id: 1
+  @compliment = Model.find_by(id: rand(Model.count(:compliment)))
   respond_message @compliment.compliment
 end
 

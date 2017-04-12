@@ -8,19 +8,21 @@ post '/gateway' do
   message = params[:text].gsub(params[:trigger_word], '').strip
 
   action, repo = message.split('_').map {|c| c.strip.downcase }
-  repo_url = "https://api.github.com/repos/#{repo}"
+  # repo_url = "https://api.github.com/repos/#{repo}"
 
   case action
-    when 'issues'
-      resp = HTTParty.get(repo_url)
-      resp = JSON.parse resp.body
-      respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
+    # when 'issues'
+    #   resp = HTTParty.get(repo_url)
+    #   resp = JSON.parse resp.body
+    #   respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
     when 'ashley'
       respond_message "Ashley, you are soooooo good lookin'"
-    when 'owner'
-      resp = HTTParty.get(repo_url)
-      resp = JSON.parse resp.body
-      respond_message "#{resp['owner']['login']} owns #{repo}"
+    # when 'owner'
+    #   resp = HTTParty.get(repo_url)
+    #   resp = JSON.parse resp.body
+    #   respond_message "#{resp['owner']['login']} owns #{repo}"
+    when 'define'
+      respond_message "http://lmgtfy.com/?q=#{repo}"
   end
 end
 
@@ -42,5 +44,5 @@ def postback message, channel
 
     # HTTParty.post slack_webhook, body: {"text" => message.to_s, "username" => "John Doe", "channel" => params[:channel_id]}.to_json, headers: {'content-type' => 'application/json'}
 
-    # curl --data "Hello from Slackbot" $'https://horacephair.slack.com/services/hooks/slackbot?token=lzGQgtMVo2e6cb9ewpWmvqET&channel=%23general'
+    # curl --data "http://lmgtfy.com/?q=shinny" $'https://horacephair.slack.com/services/hooks/slackbot?token=lzGQgtMVo2e6cb9ewpWmvqET&channel=%23test'
 end

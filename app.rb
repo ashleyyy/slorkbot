@@ -30,8 +30,8 @@ def respond_message message
 end
 
 get '/anonymize' do
-  postback params[:text], params[:channel_id]
-  status 200
+  content_type :json
+  {:text => params[:text], :response_type => "in_channel"}.to_json
 end
  
 def postback message, channel

@@ -10,9 +10,7 @@ post '/gateway' do
   action = message.split.first
   term = message.split(' ')[1..-1].join(' ')
 
-  compliments = ["default compliment"]
-
-    # "you are soooooo good lookin'", "your teeth are lookin' shiny today", "I admire your courage", "nobody does it better than you", "you are kind to animals", "you are so beautiful that you know what I mean", "you’re to be a key? Because I can bear your toot?", "You look like a thing and I love you", "you are so beautiful that you make me feel better to see you"]
+  compliments = ["you are soooooo good lookin'", "your teeth are lookin' shiny today", "I admire your courage", "nobody does it better than you", "you are kind to animals", "you are so beautiful that you know what I mean", "you’re to be a key? Because I can bear your toot?", "You look like a thing and I love you", "you are so beautiful that you make me feel better to see you"]
 
   case action
   # when 'ashley'
@@ -23,7 +21,6 @@ post '/gateway' do
     term = term.gsub(" ", "+").gsub("\"", "")
     respond_message "http://lmgtfy.com/?q=#{term}"
   when 'add'
-    compliments.push(term)
     add_message term
   else 
     if term == "needs love"
@@ -38,7 +35,7 @@ def respond_message message
 end
 
 def add_message message
-  respond_message "I don't know how to debug this either"
+  respond_message "#{message}. look, I'm trying here. you're in the method at least"
 end
 
 get '/anonymize' do

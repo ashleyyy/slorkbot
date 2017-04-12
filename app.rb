@@ -20,7 +20,7 @@ post '/gateway' do
   when 'ashley'
     respond_message get_compliment
   when 'nuke'
-    @model = Model.find_by(text: "You look like a thing and I love you")
+    @model = Model.find_by(compliment: "You look like a thing and I love you")
     if @model.destroy
       respond_message 'good'
     else 

@@ -11,12 +11,17 @@ post '/gateway' do
 
   message = params[:text].gsub(params[:trigger_word], '').downcase!
 
-  action = message.split.first
+  if message.split.first == ','
+    action = message.gsub("," "").split.first
+  else 
+    action = message.split.first
+  end
+
   term = message.split(' ')[1..-1].join(' ').gsub("\"", "")
 
   case action
   when 'ashley'
-    respond_message get_compliment
+    respond_message "Ashley is my creator! She needs for nothing, except maybe a full time jorb"
   # when 'nuke'
   #   @model = Model.find_by(compliment:)
   #   if @model.destroy
@@ -24,8 +29,8 @@ post '/gateway' do
   #   else 
   #     respond_message 'bad'
   #   end
-  when ','
-    respond_message params[:user_name] + ", I fucking hate commas"
+  # when ','
+  #   respond_message params[:user_name] + ", I fucking hate commas"
   when 'I'
     respond_message params[:user_name] + ", " + get_compliment
   when 'define'

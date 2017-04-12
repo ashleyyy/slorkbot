@@ -39,8 +39,12 @@ def respond_message message
 end
 
 def add_message message
-
-  respond_message "#{message}. look, I'm trying here. you're in the method at least"
+  @model = Model.new(compliment: message)
+  if @model.save
+    respond_message "#{message} saved"
+  else
+    respond_message "#{message}. look, I'm trying here. you're in the method at least"
+  end
 end
 
 get '/anonymize' do

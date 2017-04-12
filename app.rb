@@ -13,7 +13,7 @@ post '/gateway' do
 
   action = message.split.first
   term = message.split(' ')[1..-1].join(' ').gsub("\"", "")
-  
+
   case action
   when 'ashley'
     respond_message get_compliment
@@ -31,8 +31,14 @@ post '/gateway' do
     respond_message "http://lmgtfy.com/?q=#{term}"
   when 'add'
     add_compliment term
+  when 'you'
+    respond_message "it's true"
+  when 'love'
+    if term == "me"
+      respond_message params[:user_name] + ", " + get_compliment
+    end
   else 
-    if term == "needs love"
+    if term == "needs love" || "love me"
       respond_message action + ", " + get_compliment
     end
   end
@@ -73,5 +79,5 @@ end
 
 #     # HTTParty.post slack_webhook, body: {"text" => message.to_s, "username" => "John Doe", "channel" => params[:channel_id]}.to_json, headers: {'content-type' => 'application/json'}
 
-#     # curl --data ":tea:" $'https://horacephair.slack.com/services/hooks/slackbot?token=lzGQgtMVo2e6cb9ewpWmvqET&channel=%23test'
+#     # curl --data "go home slorkbot, you're drunk" $'https://horacephair.slack.com/services/hooks/slackbot?token=lzGQgtMVo2e6cb9ewpWmvqET&channel=%23general'
 # end

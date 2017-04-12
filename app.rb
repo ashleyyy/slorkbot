@@ -11,15 +11,13 @@ post '/gateway' do
 
   message = params[:text].sub(params[:trigger_word], '')
 
-  action = message.split(' ')[1..-1].join(' ').split if message.split.first == ','
-
-  # if message.split.first == ','
-  #   action = message.split(' ')[1..-1].join(' ').split.first
-  # else 
+  if message.split.first == ','
+    action = message.split(' ')[1..-1].join(' ').split.first
+     term = message.split(' ')[2..-1].join(' ').gsub("\"", "")
+  else 
     action = message.split.first
-  # end
-
-  term = message.split(' ')[1..-1].join(' ').gsub("\"", "")
+    term = message.split(' ')[1..-1].join(' ').gsub("\"", "")
+  end
 
   case action
   when 'ashley'

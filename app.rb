@@ -9,7 +9,7 @@ require './models/model'
 post '/gateway' do
   return if params[:token] != ENV['SLACK_TOKEN']
 
-  message = params[:text].gsub(params[:trigger_word], '').strip.gsub(",", "")
+  message = params[:text].gsub(params[:trigger_word], '')
 
   action = message.split.first
   term = message.split(' ')[1..-1].join(' ').gsub("\"", "")
@@ -24,6 +24,8 @@ post '/gateway' do
   #   else 
   #     respond_message 'bad'
   #   end
+  when ','
+    respond_message params[:user_name] + ", I fucking hate commas"
   when 'I'
     respond_message params[:user_name] + ", " + get_compliment
   when 'define'
@@ -40,6 +42,8 @@ post '/gateway' do
   else 
     if term == "needs love"
       respond_message action + ", " + get_compliment
+    else
+      respond_message "guys, sometimes I need love too"
     end
   end
 end

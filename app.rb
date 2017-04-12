@@ -9,31 +9,21 @@ post '/gateway' do
 
   action = message.split.first
   term = message.split(' ')[1..-1].join(' ')
-  # repo_url = "https://api.github.com/repos/#{term}"
 
-
+  compliments = ["you are soooooo good lookin'", "your teeth are lookin' shiny today", "I admire your courage", "nobody does it better than you", "you are kind to animals", "you are so beautiful that you know what I mean", "you’re to be a key? Because I can bear your toot?", "You look like a thing and I love you", "you are so beautiful that you make me feel better to see you"]
 
   case action
-    # when 'issues'
-    #   resp = HTTParty.get(repo_url)
-    #   resp = JSON.parse resp.body
-    #   respond_message "There are #{resp['open_issues_count']} open issues on #{term}"
-    when 'ashley'
-      respond_message "Ashley, you are soooooo good lookin'"
-    when 'I'
-      respond_message params[:user_name] + " you are soooooo good lookin'"
-    # when 'owner'
-    #   resp = HTTParty.get(repo_url)
-    #   resp = JSON.parse resp.body
-    #   respond_message "#{resp['owner']['login']} owns #{term}"
-    when 'define' || ', define'
-      term = term.gsub(" ", "+").gsub("\"", "")
-      respond_message "http://lmgtfy.com/?q=#{term}"
-    else 
-      if term == "needs love"
-        respond_message "#{action}, you are soooooo good lookin'"
-      end
-
+  # when 'ashley'
+  #   respond_message "Ashley, you are soooooo good lookin'"
+  when 'I'
+    respond_message params[:user_name] + " "+ compliments[rand(compliments.length)]
+  when 'define'
+    term = term.gsub(" ", "+").gsub("\"", "")
+    respond_message "http://lmgtfy.com/?q=#{term}"
+  else 
+    if term == "needs love"
+      respond_message "#{action}, you are soooooo good lookin'"
+    end
   end
 end
 

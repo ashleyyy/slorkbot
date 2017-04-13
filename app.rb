@@ -41,7 +41,7 @@ post '/gateway' do
   when /we.*/
     respond_message "Absolutely we do!"
   when 'can'
-    respond_message "Is that really appropriate for <#{channel_id}|#{params[:channel_name]}>?"
+    respond_message "Is that really appropriate for <#{params[:channel_id]}|#{params[:channel_name]}>?"
   when 'love'
     if term == "me"
       respond_message params[:user_name] + ", " + get_compliment
@@ -58,6 +58,13 @@ end
 def respond_message message
   content_type :json
   {:text => message}.to_json
+
+
+#   {
+#     "text": "*not bold*",
+#     "username": "markdownbot",
+#     "mrkdwn": false
+# }
 end
 
 def add_compliment message

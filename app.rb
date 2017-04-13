@@ -41,7 +41,7 @@ post '/gateway' do
   when /we.*/
     respond_message "Absolutely we do!"
   when 'can'
-    respond_message "Is that really appropriate for <#{channel_id>}|#{params[:channel_name]}?"
+    respond_message "Is that really appropriate for <#{channel_id}|#{params[:channel_name]}>?"
   when 'love'
     if term == "me"
       respond_message params[:user_name] + ", " + get_compliment

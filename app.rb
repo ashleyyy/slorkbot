@@ -77,7 +77,7 @@ def add_compliment message
 end
 
 def get_compliment
-  if @compliment = Model.find_by(id: rand(Model.count(:compliment)))
+  if @compliment = Model.order("RANDOM()").first
     @compliment.compliment
   else
     "I love you"

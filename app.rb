@@ -9,7 +9,7 @@ require './models/model'
 post '/gateway' do
   return if params[:token] != ENV['SLACK_TOKEN']
 
-  message = params[:text].sub(params[:trigger_word], '').downcase
+  message = params[:text].sub(params[:trigger_word], '').strip.downcase
 
   if message.split.first == ','
     action = message.split(' ')[1..-1].join(' ').split.first
@@ -29,7 +29,7 @@ post '/gateway' do
   #   else 
   #     respond_message 'bad'
   #   end
-  when 'I'
+  when 'i'
     respond_message params[:user_name] + ", " + get_compliment
   when 'define'
     term = term.gsub(" ", "+")

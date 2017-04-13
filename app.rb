@@ -36,6 +36,8 @@ post '/gateway' do
     respond_message "http://lmgtfy.com/?q=#{term}"
   when 'add'
     add_compliment term
+  when 'hug'
+    respond_message ":hug: #{term}"
   when /you.*/
     respond_message "it's true"
   when /we.*/

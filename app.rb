@@ -47,10 +47,13 @@ post '/gateway' do
       respond_message params[:user_name] + ", " + get_compliment
     end
   else 
+
+    hugs = [":hug:", ":moarhug:", ":oatmealhug:", ":grouphug:", ":hug:"]
+
     if term == "needs love" || term == "need love"
       respond_message action + ", " + get_compliment
     elsif message.include? "hug" 
-      respond_message ":hug:"
+      respond_message hugs[rand(hugs.length)]
     else
       respond_message "guys, sometimes I need love too"
     end

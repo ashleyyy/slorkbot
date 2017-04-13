@@ -59,14 +59,12 @@ end
 
 def respond_message message
   content_type :json
-  # {:text => message}.to_json
-
-
-  {
-    "text": message,
-    "username": "markdownbot",
-    "mrkdwn": false
-}
+  {:text => message}.to_json
+#   {
+#     "text": message,
+#     "username": "markdownbot",
+#     "mrkdwn": false
+# }
 end
 
 def add_compliment message

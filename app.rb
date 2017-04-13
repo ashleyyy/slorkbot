@@ -38,6 +38,8 @@ post '/gateway' do
     add_compliment term
   when /you.*/
     respond_message "it's true"
+  when /we.*/
+    respond_message "Absolutely we do!"
   when 'love'
     if term == "me"
       respond_message params[:user_name] + ", " + get_compliment

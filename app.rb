@@ -36,8 +36,6 @@ post '/gateway' do
     respond_message "http://lmgtfy.com/?q=#{term}"
   when 'add'
     add_compliment term
-  when 'hug'
-    respond_message ":hug: #{term}"
   when /you.*/
     respond_message "it's true"
   when /we.*/
@@ -51,6 +49,9 @@ post '/gateway' do
   else 
     if term == "needs love" || term == "need love"
       respond_message action + ", " + get_compliment
+    else 
+      if message include? "hug" 
+        respond_message ":hug:"
     else
       respond_message "guys, sometimes I need love too"
     end

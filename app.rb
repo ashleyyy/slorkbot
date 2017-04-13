@@ -49,7 +49,7 @@ post '/gateway' do
   else 
     if term == "needs love" || term == "need love"
       respond_message action + ", " + get_compliment
-    elsif message include? "hug" 
+    elsif message.include? "hug" 
       respond_message ":hug:"
     else
       respond_message "guys, sometimes I need love too"

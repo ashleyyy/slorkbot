@@ -38,14 +38,14 @@ post '/gateway' do
     respond_message "http://lmgtfy.com/?q=#{term}"
   when 'add'
     add_compliment term
-  when 'you'
+  when /you.*/
     respond_message "it's true"
   when 'love'
     if term == "me"
       respond_message params[:user_name] + ", " + get_compliment
     end
   else 
-    if term == "needs love"
+    if term == "needs love" || term == "need love"
       respond_message action + ", " + get_compliment
     else
       respond_message "guys, sometimes I need love too"

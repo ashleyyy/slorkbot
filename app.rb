@@ -52,6 +52,7 @@ post '/gateway' do
     else 
       if message include? "hug" 
         respond_message ":hug:"
+      end
     else
       respond_message "guys, sometimes I need love too"
     end

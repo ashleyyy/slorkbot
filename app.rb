@@ -53,7 +53,7 @@ post '/gateway' do
     hugs = [":hug:", ":moarhug:", ":oatmealhug:", ":grouphug:", ":hug:"]
 
     if term == "needs love" || term == "need love" 
-      respond_message action + ", " + get_compliment
+      respond_message action + " " + get_compliment
     elsif term.include? "love"
       respond_message get_compliment, params[:user_name]
     elsif message.include? "hug" 

@@ -53,23 +53,24 @@ post '/gateway' do
     hugs = [":hug:", ":moarhug:", ":oatmealhug:", ":grouphug:", ":hug:"]
 
     if term.include? "love"
-      respond_message action + ", " + get_compliment
+      respond_message get_compliment
     elsif message.include? "hug" 
       respond_message hugs[rand(hugs.length)]
     else
-      respond_message "guys, sometimes I need love too"
+      respond_message "Folks, I'm only as clever as Ashley."
     end
   end
 end
 
 def respond_message message
   content_type :json
-  {:text => message}.to_json
-#   {
-#     "text": message,
-#     "username": "markdownbot",
-#     "mrkdwn": false
-# }
+  # {text: message}.to_json
+  {
+    text: message,
+    # username: "markdownbot",
+    # mrkdwn: false
+  }.to_json
+
 end
 
 def add_compliment message

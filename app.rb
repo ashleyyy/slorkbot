@@ -72,6 +72,7 @@ def respond_message message
     # username: "markdownbot",
     # mrkdwn: false
   }.to_json
+end
 
 
 def add_compliment message

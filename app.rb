@@ -55,7 +55,7 @@ post '/gateway' do
     if term == "needs love" || term == "need love" 
       respond_message action + ", " + get_compliment
     elsif term.include? "love"
-      respond_message get_compliment
+      respond_message get_compliment, params[:user_name]
     elsif message.include? "hug" 
       respond_message hugs[rand(hugs.length)]
     else
@@ -64,12 +64,12 @@ post '/gateway' do
   end
 end
 
-def respond_message message
+def respond_message message, username, 
   content_type :json
   # {text: message}.to_json
   {
     text: message,
-    # username: "markdownbot",
+    username: username,
     # mrkdwn: false
   }.to_json
 end

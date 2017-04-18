@@ -52,12 +52,14 @@ post '/gateway' do
 
     hugs = [":hug:", ":moarhug:", ":oatmealhug:", ":grouphug:", ":hug:"]
 
-    if term.include? "love"
+    if term == "needs love" || term == "need love" 
+      respond_message action + ", " + get_compliment
+    elsif term.include? "love"
       respond_message get_compliment
     elsif message.include? "hug" 
       respond_message hugs[rand(hugs.length)]
     else
-      respond_message "Folks, I'm only as clever as Ashley."
+      respond_message "guys, sometimes I need love too"
     end
   end
 end
@@ -71,7 +73,6 @@ def respond_message message
     # mrkdwn: false
   }.to_json
 
-end
 
 def add_compliment message
   @model = Model.new(compliment: message)

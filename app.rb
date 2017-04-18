@@ -37,7 +37,7 @@ post '/gateway' do
     term = term.gsub(" ", "+")
     respond_message "http://lmgtfy.com/?q=#{term}"
   when 'add'
-    add_compliment term
+    add_compliment term, "slackbot", "ephemeral"
   when /you.*/
     respond_message "it's true"
   when /we.*/
@@ -66,10 +66,11 @@ post '/gateway' do
   end
 end
 
-def respond_message message, username = "slorkbot"
+def respond_message message, username = "slorkbot", response_type = "in_channel"
   content_type :json
   # {text: message}.to_json
   {
+    response_type: response_type,
     text: message,
     username: username,
     # mrkdwn: false

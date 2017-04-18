@@ -25,7 +25,7 @@ post '/gateway' do
   when 'nuke'
     @model = Model.find_by! compliment: "#{term}"
     if @model.destroy
-      respond_message 'good bye #{term}!'
+      respond_message 'good bye!'
     else 
       respond_message 'bad news, yo!'
     end

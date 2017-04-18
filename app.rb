@@ -9,7 +9,7 @@ require './models/model'
 post '/gateway' do
   return if params[:token] != ENV['SLACK_TOKEN']
 
-  if message.include? "@" 
+  if params[:text].include? "@" 
     message = params[:text].sub(params[:trigger_word], '').strip.gsub('<', '').gsub('>', '')
   else 
     message = params[:text].sub(params[:trigger_word], '').strip.downcase

@@ -8,6 +8,7 @@ require './models/model'
 
 post '/gateway' do
   return if params[:token] != ENV['SLACK_TOKEN']
+  puts message
 
   message = params[:text].sub(params[:trigger_word], '').strip.downcase
 

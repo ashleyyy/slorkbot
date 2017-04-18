@@ -11,7 +11,7 @@ post '/gateway' do
 
   message = params[:text].sub(params[:trigger_word], '').strip
 
-  message.downcase unless message.include? "@"
+  message.downcase! unless message.include? "@"
 
   if message.split.first == ','
     action = message.split(' ')[1..-1].join(' ').split.first

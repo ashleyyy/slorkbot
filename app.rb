@@ -11,7 +11,7 @@ post '/gateway' do
 
   message = params[:text].sub(params[:trigger_word], '').strip
 
-  message.downcase! unless message.include? "@"
+  # message.downcase! unless message.include? "@"
 
   if message.split.first == ','
     action = message.split(' ')[1..-1].join(' ').split.first
@@ -21,7 +21,7 @@ post '/gateway' do
     term = message.split(' ')[1..-1].join(' ').gsub("\"", "")
   end
 
-  case action
+  case action.downcase
   when 'ashley'
     respond_message "Ashley is my creator! She needs for nothing, except maybe a full time jorb"
   when 'nuke'
@@ -68,7 +68,6 @@ end
 
 def respond_message message, username = "slorkbot", response_type = "in_channel"
   content_type :json
-  # {text: message}.to_json
   {
     response_type: response_type,
     text: message,
@@ -83,7 +82,7 @@ def add_compliment message
   if @model.save
     respond_message "Thanks! :blush: I'll pass it on.", "slackbot", "ephemeral"
   else
-    respond_message "I don't know why, but there's been a massive fuckup"
+    respond_message "I don't know why, but there's been a massive fuckup", "slackbot", "ephemeral"
   end
 end
 

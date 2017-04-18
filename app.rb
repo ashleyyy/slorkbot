@@ -22,13 +22,13 @@ post '/gateway' do
   case action
   when 'ashley'
     respond_message "Ashley is my creator! She needs for nothing, except maybe a full time jorb"
-  # when 'nuke'
-  #   @model = Model.find_by(compliment:)
-  #   if @model.destroy
-  #     respond_message 'good'
-  #   else 
-  #     respond_message 'bad'
-  #   end
+  when 'nuke'
+    @model = Model.find_by(term)
+    if @model.destroy
+      respond_message 'good bye!'
+    else 
+      respond_message 'bad news, yo!'
+    end
   when 'i'
     respond_message params[:user_name] + ", " + get_compliment
   when 'define'
@@ -45,12 +45,14 @@ post '/gateway' do
   when 'love'
     if term == "me"
       respond_message params[:user_name] + ", " + get_compliment
+    elsif 
+      respond_message term + ", " + get_compliment
     end
   else 
 
     hugs = [":hug:", ":moarhug:", ":oatmealhug:", ":grouphug:", ":hug:"]
 
-    if term == "needs love" || term == "need love"
+    if term.include? "love"
       respond_message action + ", " + get_compliment
     elsif message.include? "hug" 
       respond_message hugs[rand(hugs.length)]
@@ -100,8 +102,4 @@ end
 
 #     # HTTParty.post slack_webhook, body: {"text" => message.to_s, "username" => "John Doe", "channel" => params[:channel_id]}.to_json, headers: {'content-type' => 'application/json'}
 
-#     # curl --data "go home slorkbot, you're drunk" $'https://horacephair.slack.com/services/hooks/slackbot?token=lzGQgtMVo2e6cb9ewpWmvqET&channel=%23general'
 # end
-
-
-## is sad, can i have a puppy

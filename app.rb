@@ -23,7 +23,7 @@ post '/gateway' do
   when 'ashley'
     respond_message "Ashley is my creator! She needs for nothing, except maybe a full time jorb"
   when 'nuke'
-    @model = Model.find_by! compliment: "\"#{term}\""
+    @model = Model.find_by! compliment: "you smell fancy"
     if @model.destroy
       respond_message 'good bye!'
     else 

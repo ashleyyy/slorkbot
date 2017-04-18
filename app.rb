@@ -37,7 +37,7 @@ post '/gateway' do
     term = term.gsub(" ", "+")
     respond_message "http://lmgtfy.com/?q=#{term}"
   when 'add'
-    add_compliment term, "slackbot", "ephemeral"
+    add_compliment term
   when /you.*/
     respond_message "it's true"
   when /we.*/
@@ -81,7 +81,7 @@ end
 def add_compliment message
   @model = Model.new(compliment: message)
   if @model.save
-    respond_message "Thanks! :blush: I'll pass it on."
+    respond_message "Thanks! :blush: I'll pass it on.", "slackbot", "ephemeral"
   else
     respond_message "I don't know why, but there's been a massive fuckup"
   end

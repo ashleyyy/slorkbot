@@ -11,8 +11,6 @@ post '/gateway' do
 
   message = params[:text].sub(params[:trigger_word], '').strip
 
-  # message.downcase! unless message.include? "@"
-
   if message.split.first == ','
     action = message.split(' ')[1..-1].join(' ').split.first
      term = message.split(' ')[2..-1].join(' ').gsub("\"", "")
@@ -25,7 +23,7 @@ post '/gateway' do
   when 'ashley'
     respond_message "Ashley is my creator! She needs for nothing, except maybe a full time jorb"
   when 'nuke'
-    @model = Model.find_by(term)
+    @model = Model.find_by("#{term}")
     if @model.destroy
       respond_message 'good bye!'
     else 

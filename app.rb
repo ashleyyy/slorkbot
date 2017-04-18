@@ -53,7 +53,7 @@ post '/gateway' do
     hugs = [":hug:", ":moarhug:", ":oatmealhug:", ":grouphug:", ":hug:"]
 
     if term == "needs love" || term == "need love" 
-      respond_message action + ", " + get_compliment
+      respond_message action + ", " + capitalize
     elsif term.include? "love"
       respond_message get_compliment, params[:user_name]
     elsif message.include? "hug" 
@@ -68,7 +68,7 @@ def respond_message message, username = "slorkbot", response_type = "in_channel"
   content_type :json
   {
     response_type: response_type,
-    text: message,
+    text: message.capitalize,
     username: username,
     # mrkdwn: false
   }.to_json

@@ -23,7 +23,7 @@ post '/gateway' do
   when 'listallcomplimentsplease'
     @models = Model.all 
     puts "WHAAAAAT"
-    puts @models[0]
+    # puts @models[0]
   when 'ashley'
     respond_message "Ashley is my creator! She needs for nothing, except maybe a full time jorb"
   when 'nuke'

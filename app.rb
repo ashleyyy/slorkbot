@@ -22,7 +22,7 @@ post '/gateway' do
   case action.downcase
   when 'listallcomplimentsplease'
     @models = Model.all 
-    @models.each { |m| respond_message m.compliment }
+    @models.each { |m| respond_message m }
   when 'ashley'
     respond_message "Ashley is my creator! She needs for nothing, except maybe a full time jorb"
   when 'nuke'

@@ -22,8 +22,8 @@ post '/gateway' do
   case action.downcase
   when 'listallcomplimentsplease'
     @models = Model.all 
-    puts @models[0]
-    puts "WHAAAAT" + @models[1]
+    # puts @models[0]
+    # puts "WHAAAAT" + @models[1]
   when 'ashley'
     respond_message "Ashley is my creator! She needs for nothing, except maybe a full time jorb"
   when 'nuke'

@@ -20,6 +20,8 @@ post '/gateway' do
   end
 
   case action.downcase
+  when 'listallcomplimentsplease'
+    respond_message Model.all
   when 'ashley'
     respond_message "Ashley is my creator! She needs for nothing, except maybe a full time jorb"
   when 'nuke'

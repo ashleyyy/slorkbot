@@ -58,6 +58,9 @@ post '/gateway' do
       respond_message get_compliment, params[:user_name]
     elsif message.include? "hug" 
       respond_message hugs[rand(hugs.length)]
+    elsif message.include? "needs"
+      term = message.split("needs")[1]
+      respond_message "We all need " + term
     else
       respond_message "guys, sometimes I need love too"
     end

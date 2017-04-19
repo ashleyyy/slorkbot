@@ -23,7 +23,7 @@ post '/gateway' do
   when 'listallcomplimentsplease'
     @models = Model.all 
     puts "if it works, it's below this line I guess!"
-    @models.each { |m| puts m.compliment }
+    @models.each { |m| respond_message m.compliment }
   when 'ashley'
     respond_message "Ashley is my creator! She needs for nothing, except maybe a full time jorb"
   when 'nuke'

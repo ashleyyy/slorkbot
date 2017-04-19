@@ -23,6 +23,7 @@ post '/gateway' do
   when 'listallcomplimentsplease'
     @models = Model.all 
     @models.each { |m| respond_message m }
+    @models.each { |m| puts m.compliment }
   when 'ashley'
     respond_message "Ashley is my creator! She needs for nothing, except maybe a full time jorb"
   when 'nuke'
@@ -74,7 +75,7 @@ def respond_message message, username = "slorkbot", response_type = "in_channel"
   content_type :json
   {
     response_type: response_type,
-    text: message
+    text: message,
     username: username,
     # mrkdwn: false
   }.to_json

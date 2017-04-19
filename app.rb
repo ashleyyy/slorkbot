@@ -74,7 +74,7 @@ def respond_message message, username = "slorkbot", response_type = "in_channel"
   content_type :json
   {
     response_type: response_type,
-    text: message.capitalize,
+    text: message
     username: username,
     # mrkdwn: false
   }.to_json

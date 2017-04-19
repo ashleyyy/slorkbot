@@ -21,7 +21,7 @@ post '/gateway' do
 
   case action.downcase
   when 'listallcomplimentsplease'
-    respond_message Model.all
+    @models = Model.all? { |m| respond_message m.compliment }
   when 'ashley'
     respond_message "Ashley is my creator! She needs for nothing, except maybe a full time jorb"
   when 'nuke'

@@ -25,7 +25,7 @@ post '/gateway' do
     puts "if it works, it's below this line I guess!"
     @models.each { |m| respond_message m.compliment }
   when 'ashley'
-    respond_message "Ashley is my creator! She needs for nothing, except maybe a full time jorb"
+    respond_message "Ashley is pretty cute, don't you think?"
   when 'nuke'
     @model = Model.find_by! compliment: "#{term}"
     if @model.destroy

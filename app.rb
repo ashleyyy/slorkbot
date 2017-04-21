@@ -22,6 +22,7 @@ post '/gateway' do
   case action.downcase
   when 'listallcomplimentsplease'
     models = Model.all 
+    puts models
     puts "if it works, it's below this line I guess!"
     models.each { |m| puts m.compliment }
     models.each { |m| respond_message m.compliment }

@@ -58,15 +58,18 @@ post '/gateway' do
 
     if term =~ /need.? love\W?/
       respond_message action + ", " + get_compliment
+      # so-and-so, nice teeth
     elsif term.include? "love"
-      respond_message get_compliment, params[:user_name]
+      respond_message get_compliment.capitalize, params[:user_name]
+      # compliment from user who triggered it 
     elsif message.include? "hug" 
       respond_message hugs[rand(hugs.length)]
+      # just give hugmoji
     elsif message.include? "needs"
       term = message.split("needs")[1]
-      respond_message "We could all benefit from" + term
+      respond_message "We could all benefit from" + term +"!"
     else
-      respond_message "guys, sometimes I need love too"
+      respond_message "I'm a robot who doesn't understand what you're asking. Good thing you also have human friends"
     end
   end
 end
@@ -75,7 +78,7 @@ def respond_message message, username = "slorkbot", response_type = "in_channel"
   content_type :json
   {
     response_type: response_type,
-    text: message.capitalize,
+    text: message,
     username: username,
     # mrkdwn: false
   }.to_json

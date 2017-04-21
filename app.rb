@@ -23,8 +23,8 @@ post '/gateway' do
   when 'listallcomplimentsplease'
     models = Model.all
     puts "if it works, it's below this line I guess!"
-    puts models
-    # models.each { |m| puts m.compliment }
+    # puts models
+    models.each { |m| puts m.compliment }
     # models.each { |m| respond_message m.compliment }
     # this doesn't actually work
   when 'ashley'

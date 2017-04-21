@@ -45,6 +45,8 @@ post '/gateway' do
     respond_message "it's true"
   when /we.*/
     respond_message "Absolutely we do!"
+  when 'please'
+    respond_message "_looks for the recursion emoji_"
   when 'can'
     respond_message "Is that really appropriate for <##{params[:channel_id]}|#{params[:channel_name]}>?"
   when 'love'

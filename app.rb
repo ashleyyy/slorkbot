@@ -9,21 +9,21 @@ require './models/model'
 post '/gateway' do
   return if params[:token] != ENV['SLACK_TOKEN']
 
-  message = params[:text].sub(params[:trigger_word], '').strip
+  message = params[:text].sub(params[:trigger_word], '').strip # text minus 'slorkbot'
 
-  if message.split.first == ','
-    action = message.split(' ')[1..-1].join(' ').split.first
-     term = message.split(' ')[2..-1].join(' ').gsub("\"", "")
+  if message.split.first == ',' # accounts for comma after slorkbot
+    action = message.split(' ')[1..-1].join(' ').split.first #first word of string after stripping leading comma
+     term = message.split(' ')[2..-1].join(' ').gsub("\"", "") #everything in string except the first word
   else 
-    action = message.split.first
-    term = message.split(' ')[1..-1].join(' ').gsub("\"", "")
+    action = message.split.first #first word of string
+    term = message.split(' ')[1..-1].join(' ').gsub("\"", "") #everything else
   end
 
   case action.downcase
   when 'listallcomplimentsplease'
     @models = Model.all 
     puts "if it works, it's below this line I guess!"
-    @models.each { |m| respond_message m.compliment }
+    @models.each { |m| puts m.compliment }
     # this doesn't actually work
   when 'ashley'
     respond_message "Ashley _is_ pretty cute, don't you think?"
@@ -82,9 +82,9 @@ end
 def respond_message message, username = "slorkbot", response_type = "in_channel"
   content_type :json
   {
-    response_type: response_type,
     text: message,
-    username: username,
+    username: username, # overwrites slorkbot's displayed username
+    response_type: response_type, # I don't think this works
     # mrkdwn: false
   }.to_json
 end
@@ -102,10 +102,12 @@ end
 def get_compliment
   if @compliment = Model.order("RANDOM()").first
     @compliment.compliment
-  else
+  else # handle db error
     "I love you"
   end
 end
+
+# ignore below.
 
 # get '/anonymize' do
 #   postback params[:text], params[:channel_id]

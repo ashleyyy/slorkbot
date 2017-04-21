@@ -24,6 +24,7 @@ post '/gateway' do
     @models = Model.all 
     puts "if it works, it's below this line I guess!"
     @models.each { |m| respond_message m.compliment }
+    # this doesn't actually work
   when 'ashley'
     respond_message "Ashley _is_ pretty cute, don't you think?"
   when 'nuke'
@@ -49,8 +50,10 @@ post '/gateway' do
   when 'love'
     if term == "me"
       respond_message params[:user_name] + ", " + get_compliment
-    elsif 
+      # compliment from user who triggered it 
+    else
       respond_message term + ", " + get_compliment
+      # compliment to person specified
     end
   else 
 
@@ -58,7 +61,7 @@ post '/gateway' do
 
     if term =~ /need.? love\W?/
       respond_message action + ", " + get_compliment
-      # so-and-so, nice teeth
+      # compliment to person specified
     elsif term.include? "love"
       respond_message get_compliment.capitalize, params[:user_name]
       # compliment from user who triggered it 

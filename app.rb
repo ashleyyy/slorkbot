@@ -64,7 +64,7 @@ post '/gateway' do
 
     hugs = [":hug:", ":moarhug:", ":oatmealhug:", ":grouphug:", ":hug:"]
 
-    if term =~ /need.? love\W?/
+    if term =~ /need.* love\W*/
       respond_message action + ", " + get_compliment
       # compliment to person specified
     elsif term.include? "love"

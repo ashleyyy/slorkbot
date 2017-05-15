@@ -44,6 +44,8 @@ post '/gateway' do
     respond_message "http://lmgtfy.com/?q=#{term}"
   when 'add'
     add_compliment term
+  when /jes+e?/
+    respond_message "Damn kid.  All they do is play games.  They're all alike."
   when /you.*/
     respond_message "it's true"
   when /we.*/

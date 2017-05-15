@@ -96,9 +96,9 @@ end
 def add_compliment message
   @model = Model.new(compliment: message)
   if @model.save
-    respond_message "Thanks! :blush: I'll pass it on.", "slackbot", "ephemeral"
+    respond_message "Thanks! :blush: I'll pass it on.", "slorkbot", "ephemeral"
   else
-    respond_message "I don't know why, but there's been a massive fuckup", "slackbot", "ephemeral"
+    respond_message "I don't know why, but there's been a massive fuckup", "slorkbot", "ephemeral"
   end
 end
 

@@ -77,7 +77,7 @@ post '/gateway' do
       term = message.split("needs")[1]
       respond_message "We could all benefit from" + term +"!"
     else
-      respond_message "I'm a robot who doesn't understand what you're asking. \nGood thing you also have human friends"
+      respond_message "Maybe you should ask a human"
     end
   end
 end

@@ -57,7 +57,7 @@ post '/gateway' do
   when 'love'
     if term == "me"
       respond_message params[:user_name] + ", " + get_compliment
-      # compliment from user who triggered it 
+      # compliment to user who triggered it 
     else
       respond_message term + ", " + get_compliment
       # compliment to person specified
@@ -71,7 +71,7 @@ post '/gateway' do
       # compliment to person specified
     elsif term.include? "love"
       respond_message get_compliment.capitalize, params[:user_name]
-      # compliment from user who triggered it 
+      # compliment from user who triggered it (yes I know that's weird)
     elsif message.include? "hug" 
       respond_message hugs[rand(hugs.length)]
       # just give hugmoji
